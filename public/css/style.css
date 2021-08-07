@@ -1,0 +1,30 @@
+nav{
+    font-family: 'Poppins', sans-serif;
+}
+#logo{
+    font-family: 'ZCOOL KuaiLe', cursive;
+    font-size: xx-large;
+    background: -webkit-linear-gradient(#F74C06, #F9BC2C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+#content{
+    font-family: 'Poppins', sans-serif;
+}
+body {
+	background: linear-gradient(-45deg, white, #f1faee,#e9c46a);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
