@@ -6,6 +6,6 @@
     </x-slot>
     <!-- konten -->
     <div class="container">
-     ini edit page
+     <livewire:edit-page>
     </div>
 </x-app-layout>

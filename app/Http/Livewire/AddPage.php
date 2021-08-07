@@ -17,8 +17,9 @@ class AddPage extends Component
     public function render()
     {
 
-        return view('livewire.add-page',[
-            'pages'=>pages::where('user_id',Auth::user()->id)->get()->count(),
+        return view('livewire.add-page', [
+            'pages' => pages::where('user_id', Auth::user()->id)->get()->count(),
+            'manage_pages' => pages::where('user_id', Auth::user()->id)->get(),
         ]);
     }
 
@@ -55,6 +56,13 @@ class AddPage extends Component
             return true;
         } else {
             return false;
+        }
+    }
+
+    public function delete_page($id)
+    {
+        if (pages::where('user_id', '=', Auth::user()->id)->where('id', $id)->exists()) {
+            pages::find($id)->delete();
         }
     }
 }

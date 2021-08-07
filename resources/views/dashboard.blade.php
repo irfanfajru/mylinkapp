@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     <!-- konten -->
-    <div class="container">
+    <div class="container-fluid">
         <livewire:add-page>
     </div>
 </x-app-layout>
