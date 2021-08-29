@@ -11,15 +11,20 @@ class AddPage extends Component
 {
     public $page_name;
     protected $rules = [
-        'page_name' => 'required|string|max:10',
+        'page_name' => 'required|string|alpha_dash',
     ];
 
     public function render()
     {
-
+        $n_page = pages::where('user_id', Auth::user()->id)->get();
+        $n_link = 0;
+        foreach ($n_page as $i) {
+            $n_link += links::where('page_id', $i->id)->get()->count();
+        }
         return view('livewire.add-page', [
             'pages' => pages::where('user_id', Auth::user()->id)->get()->count(),
             'manage_pages' => pages::where('user_id', Auth::user()->id)->get(),
+            'n_link' => $n_link
         ]);
     }
 

@@ -16,7 +16,7 @@ class CreateLinksTable extends Migration
         Schema::create('links', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('page_id');
-            $table->string('link_name', 10);
+            $table->text('link_name');
             $table->text('link');
             $table->timestamps();
             $table->foreign('page_id')->references('id')->on('pages');

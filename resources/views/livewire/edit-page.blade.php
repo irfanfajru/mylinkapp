@@ -1,4 +1,4 @@
-<div>
+<div wire:poll.visible>
     <div class="row">
         <div class="col-12 col-md-5">
             <div class="card">
@@ -7,13 +7,32 @@
                 </div>
                 <div class="card-body">
                     <div class="d-flex mb-3">
-                        <button class="btn btn-primary">Link Name</button>
-                        <button class="btn btn-danger mx-2">Delete</button>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Link Name</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if($links!=NULL)
+                                @foreach($links as $i)
+                                <tr>
+                                    <td>{{$i->link_name}}</td>
+                                    <td><button wire:click="delete_link({{$i->id}})" class="btn btn-danger">Delete</button></td>
+                                </tr>
+                                @endforeach
+                                @else
+                                <p>No Links found</p>
+                                @endif
+                            </tbody>
+                        </table>
                     </div>
                     <hr>
-                    <input type="text" class="form-control mb-2" placeholder="URL Link...">
-                    <input type="text" class="form-control mb-2" placeholder="Link Name...">
-                    <button class="btn btn-success w-100 mb-2">Add Link</button>
+                    <input type="text" wire:model="link" class="form-control mb-2" placeholder="URL Link...">
+                    <input type="text" wire:model="linkname" class="form-control mb-2" placeholder="Link Name...">
+                    @error('link') <span class="error">{{ $message }}</span> @enderror
+                    <button wire:click="add_link" class="btn btn-success w-100 mb-2">Add Link</button>
                 </div>
             </div>
             <div class="card">
@@ -47,7 +66,15 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    The body of the card
+                    <div class="container text-center mb-1">
+                        <img src="{{asset('images/ava.svg')}}" class="rounded-circle shadow border" width="100rem" alt="">
+                    </div>
+                    <h3 class="text-center mb-3">{{$detail_page->page_name}}</h3>
+                    @if($links!=NULL)
+                    @foreach($links as $i)
+                    <a href="{{$i->link}}" target="_aboutblank" class="btn btn-primary w-100 mb-2">{{$i->link_name}}</a>
+                    @endforeach
+                    @endif
                 </div>
             </div>
         </div>

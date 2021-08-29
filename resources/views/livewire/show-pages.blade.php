@@ -1,7 +1,7 @@
 <div wire:poll.visible>
     @forelse($pages as $i)
     <ul class="nav nav-pills nav-sidebar flex-column nav-legacy" data-widget="treeview" role="menu" data-accordion="false">
-        <a href="/edit/{{$i->id}}" class="nav-link">
+        <a href="/edit/{{$i->id}}" class="nav-link {{ (Request::is('edit/'.$i->id) ? 'active' : '') }}">
             <i class="nav-icon fas fa-tablet"></i>
             <p>
                 {{$i->page_name}}

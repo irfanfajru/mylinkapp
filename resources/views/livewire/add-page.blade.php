@@ -66,7 +66,7 @@
                 <span class="info-box-icon"><i class="far fa-flag"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Total Links</span>
-                    <span class="info-box-number">0/Unlimited</span>
+                    <span class="info-box-number">{{$n_link}}/Unlimited</span>
                     <div class="progress">
                         <div class="progress-bar" style="width: 0%"></div>
                     </div>
@@ -93,7 +93,7 @@
             </div>
             <div class="info-box">
                 <div class="info-box-content">
-                <span class="info-box-text text-center">About Developer</span>
+                    <span class="info-box-text text-center">About Developer</span>
                     <div class="row">
                         <div class="col-4 text-center">
                             <a href="https://www.instagram.com/irfanfajru/" class=""><img src="https://irfanfajru.github.io/img/ig.png" width="50rem" alt=""></a>
