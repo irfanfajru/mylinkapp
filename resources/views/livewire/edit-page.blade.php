@@ -40,17 +40,33 @@
                     <h3 class="card-title">Manage Page</h3>
                 </div>
                 <div class="card-body">
+                    <div>
+                        @if (session()->has('message'))
+                        <div class="alert alert-success">
+                            {{ session('message') }}
+                        </div>
+                        @endif
+                    </div>
                     <div class="container text-center mb-1">
-                        <img src="{{asset('images/ava.svg')}}" class="rounded-circle shadow border" width="100rem" alt="">
+                        @if($detail_page->picture!=NULL)
+                        <img src="{{asset('storage/'.explode('/',$detail_page->picture)[1])}}" class="rounded-circle shadow border" width="175rem" height="175rem" alt="">
+                        @else
+                        <img src="{{asset('images/ava.svg')}}" class="rounded-circle shadow border" width="175rem" height="175rem" alt="">
+                        @endif
+                    </div>
+                    <div class="container-fluid text-center mt-3">
+                        <button wire:click="delete_photo" class="btn btn-danger btn-sm text-center">Delete Photo</button>
                     </div>
                     <label for="photo">Change Photo</label>
-                    <input type="file" class="form-control mb-3" id="photo">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Select Your Theme</option>
-                        <option value="1">Light</option>
-                        <option value="2">Dark</option>
-                        <option value="3">Custom (coming soon)</option>
+                    <input type="file" class="form-control mb-3" wire:model="photo"><br>
+                    <div wire:loading wire:target="photo">Uploading...</div>
+                    @error('photo') <div class="error">{{ $message }}</div> @enderror
+                    <label for="themes">Select Your Theme</label>
+                    <select class="form-select" wire:model="themes" aria-label="Default select example">
+                        <option value="0">Light</option>
+                        <option value="1">Dark</option>
                     </select>
+                    <button class="btn btn-success mt-3 w-100" wire:click="manage_page">Save</button>
                 </div>
             </div>
         </div>
@@ -67,7 +83,11 @@
                 <!-- /.card-header -->
                 <div class="card-body">
                     <div class="container text-center mb-1">
-                        <img src="{{asset('images/ava.svg')}}" class="rounded-circle shadow border" width="100rem" alt="">
+                        @if($detail_page->picture!=NULL)
+                        <img src="{{asset('storage/'.explode('/',$detail_page->picture)[1])}}" class="rounded-circle shadow border" width="175rem" height="175rem" alt="">
+                        @else
+                        <img src="{{asset('images/ava.svg')}}" class="rounded-circle shadow border" width="175rem" height="175rem" alt="">
+                        @endif
                     </div>
                     <h3 class="text-center mb-3">{{$detail_page->page_name}}</h3>
                     @if($links!=NULL)
