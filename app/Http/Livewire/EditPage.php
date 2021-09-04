@@ -15,7 +15,7 @@ class EditPage extends Component
     public $linkname;
     public $pageid;
     public $photo;
-    public $themes;
+    public $themes = 0;
     protected $rules = [
         'link' => 'required|string|url',
         'linkname' => 'required|string'

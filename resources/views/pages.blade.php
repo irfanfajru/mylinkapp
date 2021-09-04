@@ -73,7 +73,7 @@
             <div class="col-12">
                 @if($links!=NULL)
                 @foreach($links as $i)
-                <a href="{{$i->link}}" target="_aboutblank" class="btn btn-primary w-100 mb-2">{{$i->link_name}}</a>
+                <a href="{{$i->link}}" target="_aboutblank" class="btn btn-outline-primary w-100 mb-2">{{$i->link_name}}</a>
                 @endforeach
                 @endif
             </div>
