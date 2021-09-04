@@ -81,6 +81,7 @@
                     <!-- /.card-tools -->
                 </div>
                 <!-- /.card-header -->
+                @if($detail_page->theme==0)
                 <div class="card-body">
                     <div class="container text-center mb-1">
                         @if($detail_page->picture!=NULL)
@@ -96,6 +97,23 @@
                     @endforeach
                     @endif
                 </div>
+                @else
+                <div class="card-body bg-dark">
+                    <div class="container text-center mb-1">
+                        @if($detail_page->picture!=NULL)
+                        <img src="{{asset('storage/'.explode('/',$detail_page->picture)[1])}}" class="rounded-circle shadow border" width="175rem" height="175rem" alt="">
+                        @else
+                        <img src="{{asset('images/ava.svg')}}" class="rounded-circle shadow border" width="175rem" height="175rem" alt="">
+                        @endif
+                    </div>
+                    <h3 class="text-center mb-3 text-white">{{$detail_page->page_name}}</h3>
+                    @if($links!=NULL)
+                    @foreach($links as $i)
+                    <a href="{{$i->link}}" target="_aboutblank" class="btn btn-outline-primary w-100 mb-2">{{$i->link_name}}</a>
+                    @endforeach
+                    @endif
+                </div>
+                @endif
             </div>
         </div>
     </div>

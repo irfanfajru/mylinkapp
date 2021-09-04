@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PagesController;
 use App\Models\pages;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -24,10 +25,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/edit/{id_page}', function ($id_page) {
-    if(pages::where('id',$id_page)->where('user_id',Auth::user()->id)->exists())
-    return view('edit-page')->with('id_page',$id_page);
+    if (pages::where('id', $id_page)->where('user_id', Auth::user()->id)->exists())
+        return view('edit-page')->with('id_page', $id_page);
     else
-    return abort(404);
+        return abort(404);
 })->name('edit-page');
 
 Route::get('/about', function () {
@@ -41,3 +42,5 @@ Route::get('/faq', function () {
 Route::get('/contact', function () {
     return view('pages.contact');
 })->name('Contact');
+
+Route::get('/{id}', [PagesController::class, 'show']);
